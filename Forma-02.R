@@ -238,6 +238,23 @@ contrastar_hipotesis_permutaciones <- function (muestra_1, muestra_2, repeticion
   cat ("Valor p: ", valor_p, "\n\n")
 }
 
+#Semilla:
+set.seed(847)
 
+#Repeticiones:
+n_rep <- 2000
+
+#Nivel de significación:
+alfa <- 0.05
+
+#Hipotesis
+
+#H0: El promedio de los puntos ganados o perdidos por los estudiantes de la casa
+#Slytherin durante el primer trimestre es igual al promedio de los puntos
+#ganados o perdidos durante el segundo trimestre. (uTrim1 = uTrim2 = 0)
+
+#Ha: El promedio de los puntos ganados o perdidos por los estudiantes de la casa
+#Slytherin durante el primer trimestre, es mayor al promedio de los puntos
+#ganados o perdidos durante el segundo trimestre. (uTrim1 > uTrim2)
 
 #PREGUNTA 3
