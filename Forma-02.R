@@ -281,3 +281,22 @@ contrastar_hipotesis_permutaciones(trim1,trim2,repeticiones = n_rep, FUN = mean,
 
 #PREGUNTA 3
 
+#Ejemplo regresión lineal múltiple:
+
+#Se desea predecir las expectativas de los chilenos y chilenas con respecto al
+#nuevo gobierno, es por tanto que mediante una investigación, se recolectaron
+#datos de 200 personas habitantes de la región Metropolitana, dentro de los
+#cuales se encuentran: nombre, edad, nivel socioeconómico, comuna de residencia,
+#sector político, expectativa futuro gobierno.
+
+#Variables:
+#-nombre: Categórico
+#-edad: Numérica
+#-nivel socioeconómico: Categórico (por ejemplo: clase baja, clase media, clase alta)
+#-comuna de residencia: Categórico (por ejemplo: quinta normal, las condes, renca)
+#-sector político: Categórico (por ejemplo: izquierda, centro, derecha)
+#-expectativa futuro gobierno: Categórico (por ejemplo: baja, media, alta)
+
+#Hipótesis:
+#H0:
+#Ha:
