@@ -141,4 +141,24 @@ calcular_diferencia <- function (muestra_1, muestra_2, FUN) {
   return(diferencia)
 }
 
+# FunciÓn para hacer una permutación y calcular el estadístico
+# de interés.
+# Argumentos :
+# - muestra_1 , muestra_2: vectores numéricos con las muestras a comparar.
+# - FUN: función del estadístico E para el que se calcula la diferencia.
+# Valor :
+# - diferencia E_1 - E_2.
+
+permutar <- function (muestra_1, muestra_2, FUN) {
+  n_1 <- length(muestra_1)
+  n_2 <- length(muestra_2)
+  permutacion <- sample(c(muestra_1, muestra_2), size = n_1 + n_2,
+                        replace = FALSE)
+  permutacion_1 <- permutacion [1 : n_1]
+  permutacion_2 <- permutacion [n_1 + 1 : n_2]
+  return(calcular_diferencia(permutacion_1 , permutacion_2 , FUN))
+}
+
+
+
 #PREGUNTA 3
