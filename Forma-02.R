@@ -125,6 +125,8 @@ cat ("Valor p:", p)
 #concluye con un 95% de confianza que Hufflepuff y Ravenclaw tienen una 
 #diferencia promedio de 22  puntos para el primer trimestre
 
+
+
 #PREGUNTA 2
 
 #Funciones a utilizar:
@@ -190,6 +192,21 @@ calcular_valor_p <- function (distribucion, valor_observado, repeticiones, alter
   }
   
   return (valor_p)
+}
+
+# Función para graficar una distribución.
+# Argumentos :
+# - distribucion : distribución nula del estadístico de interés.
+# - ...: otros argumentos a ser entregados a gghistogram y ggqqplot .
+
+graficar_distribucion <- function (distribucion) {
+  observaciones <- data.frame(distribucion)
+  histograma <- gghistogram (observaciones, x = "distribucion",
+                             xlab = "Estadístico de interés",
+                             ylab = " Frecuencia ")
+  qq <- ggqqplot (observaciones , x = " distribucion ")
+  figura <- ggarrange (histograma, qq , ncol = 2 , nrow = 1)
+  print (figura)
 }
 
 
