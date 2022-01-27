@@ -56,6 +56,14 @@ alfa <- 0.05
 #Ha: Hufflepuff (h) y Ravenclaw (r) tienen una diferencia promedio distinta de
 #22  puntos para el primer trimestre (Xh - Xr =/= 22)
 
+
+#Se juntan los datos de ambas casas en un data frame
+n_H <- length(casaH$trim1)
+n_R <- length(casaR$trim1)
+casa <- c(rep("Hufflepuff", n_H), rep("Ravenclaw", n_R))
+puntos <- c(casaH$trim1,casaR$trim1)
+datoshr <- data.frame(casa,puntos)
+
 #PREGUNTA 2
 
 #PREGUNTA 3
