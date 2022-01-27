@@ -127,6 +127,18 @@ cat ("Valor p:", p)
 
 #PREGUNTA 2
 
+#Funciones a utilizar:
 
+# Función para calcular la diferencia de medias .
+# Argumentos :
+# - muestra_1 , muestra_2: vectores numéricos con las muestras a comparar .
+# - FUN: función del estadístico E para el que se calcula la diferencia .
+# Valor :
+# - diferencia E_1 - E_2.
+
+calcular_diferencia <- function (muestra_1, muestra_2, FUN) {
+  diferencia <- FUN(muestra_1) - FUN(muestra_2)
+  return(diferencia)
+}
 
 #PREGUNTA 3
