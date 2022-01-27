@@ -1,6 +1,6 @@
 #Forma-02
 
-#Librerías
+#Librerías:
 if (!require(ggpubr) ) {
   install.packages("ggpubr", dependencies = TRUE )
   require (ggpubr)
@@ -30,25 +30,25 @@ if (!require(bootES) ) {
   require (bootES)
 }
 
-#Lectura de los datos de entrada
+#Lectura de los datos de entrada:
 datos <- read.csv2(file.choose(), head = TRUE, encoding = "UTF-8")
 
 #PREGUNTA 1
 
-#Se seleccionan las casas y los puntajes del primer trimestre
+#Se seleccionan las casas y los puntajes del primer trimestre:
 datost1 <- select(datos, casa, trim1)
 
-#Filtro de datos para trabajar con las casas Hufflepuff y Ravenclaw
+#Filtro de datos para trabajar con las casas Hufflepuff y Ravenclaw:
 casaH <- filter(datost1, casa =='Hufflepuff')
 casaR <- filter(datost1, casa =='Ravenclaw')
 
-#Semilla
+#Semilla:
 set.seed(531)
 
-#Nivel de significación
+#Nivel de significación:
 alfa <- 0.05
 
-#Hipotesis
+#Hipotesis:
 
 #Se pide estudiar la media de los puntajes de estudiantes 2 casas
 
@@ -59,45 +59,48 @@ alfa <- 0.05
 #22  puntos para el primer trimestre (Xh - Xr =/= 22)
 
 
-#Se juntan los datos de ambas casas en un data frame
+#Se juntan los datos de ambas casas en un data frame:
 n_H <- length(casaH$trim1)
 n_R <- length(casaR$trim1)
 casa <- c(rep("Hufflepuff", n_H), rep("Ravenclaw", n_R))
 puntos <- c(casaH$trim1,casaR$trim1)
 datoshr <- data.frame(casa,puntos)
 
-#Comprobacion de normalidad (Shapiro test)
+#Comprobación de normalidad (Shapiro test):
 print(shapiro.test(casaH$trim1))
 print(shapiro.test(casaR$trim1))
 
 #El valor p entregado por el shapiro test para cada casa es alejado del valor de
 #alfa definido
 
-#Diferencia de medias entre ambas casas
+#Diferencia de medias entre ambas casas:
 mediaH <- mean(casaH$trim1)
 mediaR <- mean(casaR$trim1)
 diffHR <- mediaH - mediaR
 
 cat ("diferencia observada:", mediaH - mediaR,"\n\n")
 
-#Distribucion bootstrap
+#Distribución bootstrap:
 #5000 repeticiones
 B <- 5000
 
+#Valor nulo:
+valor_nulo <- 22
+
 distribucion_bootstrap <- two.boot(casaH$trim1,casaR$trim1,FUN = mean, R = B)
 
-#Se analiza la distribucion bootstrap
+#Se analiza la distribución bootstrap:
 valores <- data.frame(distribucion_bootstrap$t)
 colnames(valores) <- "valores"
 
-#Histograma de frecuencias
+#Histograma de frecuencias:
 histograma <- gghistogram(valores, x = "valores", color = "red",
                              fill = "red", bins = 100 ,
                              xlab = "Diferencia de medias",
                              ylab = "Frecuencia", add = "mean")
 print(histograma)
 
-#Grafico QQ
+#Grafico QQ:
 qq <- ggqqplot(valores, x = "valores", color = "red")
 print(qq)
 
@@ -105,6 +108,25 @@ cat("Distribución bootstrap:\n")
 cat ("\tMedia:", mean(valores$valores),"\n")
 cat ("\tDesviación estándar:",sd(valores$valores),"\n\n")
 
+#En el análisis de los gráficos se puede ver que hay una distribución de los 
+#datos cercana a la normal
+
+#Cálculo del p valor:
+
+desplazamiento <- mean(distribucion_bootstrap[["t"]]) - valor_nulo
+distribucion_nula <- distribucion_bootstrap [["t"]] - desplazamiento
+
+#Se determina el p valor
+p <- (sum(abs(distribucion_nula) > abs(diffHR)) + 1) / (B + 1)
+cat ("Valor p:", p)
+
+#Como el p valor es 0.2405519, mayor que el nivel de significacion
+#alfa = 0.05, se falla en rechazar la hipótesis nula. En consecuencia, se
+#concluye con un 95% de confianza que Hufflepuff y Ravenclaw tienen una 
+#diferencia promedio de 22  puntos para el primer trimestre
+
 #PREGUNTA 2
+
+
 
 #PREGUNTA 3
