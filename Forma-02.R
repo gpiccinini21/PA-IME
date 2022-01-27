@@ -35,6 +35,27 @@ datos <- read.csv2(file.choose(), head = TRUE, encoding = "UTF-8")
 
 #PREGUNTA 1
 
+#Se seleccionan las casas y los puntajes del primer trimestre
+datost1 <- select(datos, casa, trim1)
+
+#Filtro de datos para trabajar con las casas Hufflepuff y Ravenclaw
+casaH <- filter(datost1, casa =='Hufflepuff')
+casaR <- filter(datost1, casa =='Ravenclaw')
+
+#Semilla
+set.seed(531)
+
+#Nivel de significación
+alfa <- 0.05
+
+#Hipotesis
+
+#H0: Hufflepuff (h) y Ravenclaw (r) tienen una diferencia promedio de 22 
+#puntos para el primer trimestre (Xh - Xr == 22)
+
+#Ha: Hufflepuff (h) y Ravenclaw (r) tienen una diferencia promedio distinta de
+#22  puntos para el primer trimestre (Xh - Xr =/= 22)
+
 #PREGUNTA 2
 
 #PREGUNTA 3
