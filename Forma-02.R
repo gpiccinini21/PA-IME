@@ -29,3 +29,12 @@ if (!require(bootES) ) {
   install.packages("bootES", dependencies = TRUE )
   require (bootES)
 }
+
+#Lectura de los datos de entrada
+datos <- read.csv2(file.choose(), head = TRUE, encoding = "UTF-8")
+
+#PREGUNTA 1
+
+#PREGUNTA 2
+
+#PREGUNTA 3
