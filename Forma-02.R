@@ -159,6 +159,39 @@ permutar <- function (muestra_1, muestra_2, FUN) {
   return(calcular_diferencia(permutacion_1 , permutacion_2 , FUN))
 }
 
+# Función para calcular el valor p.
+# Argumentos :
+# - distribucion : distribución nula del estadístico de interés.
+# - valor_observado : valor del estadístico de interés para las muestras
+# originales.
+# - repeticiones : cantidad de permutaciones a realizar .
+# - alternative : tipo de hipótesis alternativa . "two.sided" para
+# hipótesis bilateral , "greater" o "less" para hipótesis unilaterales .
+# Valor :
+# - el valor p calculado .
+
+calcular_valor_p <- function (distribucion, valor_observado, repeticiones, alternative) {
+  if(alternative == "two.sided"){
+    numerador <- sum(abs(distribucion) > abs(valor_observado)) + 1
+    denominador <- repeticiones + 1
+    valor_p <- numerador/denominador
+  }
+  
+  else if(alternative == "greater"){
+    numerador <- sum(distribucion > valor_observado ) + 1
+    denominador <- repeticiones + 1
+    valor_p <- numerador/denominador
+  }
+  
+  else{
+    numerador <- sum(distribucion < valor_observado ) + 1
+    denominador <- repeticiones + 1
+    valor_p <- numerador/denominador
+  }
+  
+  return (valor_p)
+}
+
 
 
 #PREGUNTA 3
