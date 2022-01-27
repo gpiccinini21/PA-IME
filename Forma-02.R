@@ -64,6 +64,20 @@ casa <- c(rep("Hufflepuff", n_H), rep("Ravenclaw", n_R))
 puntos <- c(casaH$trim1,casaR$trim1)
 datoshr <- data.frame(casa,puntos)
 
+#Comprobacion de normalidad (Shapiro test)
+print(shapiro.test(casaH$trim1))
+print(shapiro.test(casaR$trim1))
+
+#El valor p entregado por el shapiro test para cada casa es alejado del valor de
+#alfa definido
+
+#Diferencia de medias entre ambas casas
+mediaH <- mean(casaH$trim1)
+mediaR <- mean(casaR$trim1)
+diffHR <- mediaH - mediaR
+
+cat ("diferencia observada:", mediaH - mediaR,"\n\n")
+
 #PREGUNTA 2
 
 #PREGUNTA 3
