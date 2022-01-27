@@ -265,9 +265,19 @@ hist(x = trim1, main = "Histograma de Trimestre 1",
 hist(x = trim2, main = "Histograma de Trimestre 2",
      xlab = "Puntos ganados o perdidos por el estudiante durante el primer trimestre")
 
-#Analizando ambos graficos, en el primer trimestre se observa que no se cumple
-#normalidad alguna con respecto a la distribucion de los datos, por otro lado
-#en el segundo trimestre, se observa un acercamiento a la distribucion normal
-#pero no es clara, y por tanto no tiene una distribucion normal.
+#Analizando ambos gráficos, en el primer trimestre se observa que no se cumple
+#normalidad alguna con respecto a la distribución de los datos, por otro lado
+#en el segundo trimestre, se observa un acercamiento a la distribución normal
+#pero no es clara, y por tanto no tiene una distribución normal.
+
+#Se contrastan las hipótesis con la función creada:
+contrastar_hipotesis_permutaciones(trim1,trim2,repeticiones = n_rep, FUN = mean, alternative= "greater", plot = FALSE)
+
+#Tal como se observa en los resultados obtenidos, con un p < alfa = 0.05 se
+#puede concluir con un 95% de confianza que el promedio de los puntos ganados
+#o perdidos por los estudiantes de la casa Slytherin durante el primer
+#trimestre, es mayor al promedio de los puntos ganados o perdidos durante el
+#segundo trimestre.
 
 #PREGUNTA 3
+
