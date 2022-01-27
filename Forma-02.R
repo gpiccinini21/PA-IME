@@ -209,6 +209,35 @@ graficar_distribucion <- function (distribucion) {
   print (figura)
 }
 
+# Función para hacer la prueba de permutaciones .
+# Argumentos :
+# - muestra_1 , muestra_2: vectores numéricos con las muestras a comparar .
+# - repeticiones : cantidad de permutaciones a realizar .
+# - FUN : función del estadístico E para el que se calcula la diferencia .
+# - alternative : tipo de hipótesis alternativa . "two.sided" para
+# hipótesis bilateral , "greater" o "less" para hipótesis unilaterales .
+# - plot : si es TRUE , construye el grÃ¡fico de la distribución generada .
+# - ...: otros argumentos a ser entregados a graficar_distribucion .
+contrastar_hipotesis_permutaciones <- function (muestra_1, muestra_2, repeticiones, FUN, alternative, plot){
+  cat("Prueba de permutaciones\n\n")
+  cat("Hipótesis alternativa: ", alternative, "\n")
+  observado <- calcular_diferencia(muestra_1, muestra_2, FUN)
+  cat("Valor observado: ", observado, "\n")
+  
+  distribucion <- rep(NA, repeticiones)
+  for (i in 1: repeticiones){
+    distribucion[i] <- permutar(muestra_1, muestra_2, FUN)
+  }
+  
+  if(plot){
+    graficar_distribucion(distribucion)
+  }
+  
+  valor_p <- calcular_valor_p(distribucion, observado, repeticiones, "two.sided")
+  
+  cat ("Valor p: ", valor_p, "\n\n")
+}
+
 
 
 #PREGUNTA 3
