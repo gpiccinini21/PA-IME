@@ -255,6 +255,19 @@ Slytherin <- filter(datos, casa == "Slytherin")
 trim1 <- Slytherin$trim1
 trim2 <- Slytherin$trim2
 
+#Se analiza si la distribucion de los datos cumple con normalidad:
 
+#Histograma trimestre 1
+hist(x = trim1, main = "Histograma de Trimestre 1", 
+     xlab = "Puntos ganados o perdidos por el estudiante durante el primer trimestre")
+
+#Histograma trimestre 2
+hist(x = trim2, main = "Histograma de Trimestre 2",
+     xlab = "Puntos ganados o perdidos por el estudiante durante el primer trimestre")
+
+#Analizando ambos graficos, en el primer trimestre se observa que no se cumple
+#normalidad alguna con respecto a la distribucion de los datos, por otro lado
+#en el segundo trimestre, se observa un acercamiento a la distribucion normal
+#pero no es clara, y por tanto no tiene una distribucion normal.
 
 #PREGUNTA 3
