@@ -78,6 +78,12 @@ diffHR <- mediaH - mediaR
 
 cat ("diferencia observada:", mediaH - mediaR,"\n\n")
 
+#Distribucion bootstrap
+#5000 repeticiones
+B <- 5000
+
+distribucion_bootstrap <- two.boot(casaH$trim1,casaR$trim1,FUN = mean, R = B)
+
 #PREGUNTA 2
 
 #PREGUNTA 3
