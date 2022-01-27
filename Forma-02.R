@@ -59,13 +59,6 @@ alfa <- 0.05
 #22  puntos para el primer trimestre (Xh - Xr =/= 22)
 
 
-#Se juntan los datos de ambas casas en un data frame:
-n_H <- length(casaH$trim1)
-n_R <- length(casaR$trim1)
-casa <- c(rep("Hufflepuff", n_H), rep("Ravenclaw", n_R))
-puntos <- c(casaH$trim1,casaR$trim1)
-datoshr <- data.frame(casa,puntos)
-
 #Comprobación de normalidad (Shapiro test):
 print(shapiro.test(casaH$trim1))
 print(shapiro.test(casaR$trim1))
@@ -247,7 +240,7 @@ n_rep <- 2000
 #Nivel de significación:
 alfa <- 0.05
 
-#Hipotesis
+#Hipotesis:
 
 #H0: El promedio de los puntos ganados o perdidos por los estudiantes de la casa
 #Slytherin durante el primer trimestre es igual al promedio de los puntos
@@ -256,5 +249,12 @@ alfa <- 0.05
 #Ha: El promedio de los puntos ganados o perdidos por los estudiantes de la casa
 #Slytherin durante el primer trimestre, es mayor al promedio de los puntos
 #ganados o perdidos durante el segundo trimestre. (uTrim1 > uTrim2)
+
+#Se filtran los datos para la casa Slytherin:
+Slytherin <- filter(datos, casa == "Slytherin")
+trim1 <- Slytherin$trim1
+trim2 <- Slytherin$trim2
+
+
 
 #PREGUNTA 3
