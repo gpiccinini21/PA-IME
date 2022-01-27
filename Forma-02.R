@@ -50,6 +50,8 @@ alfa <- 0.05
 
 #Hipotesis
 
+#Se pide estudiar la media de los puntajes de estudiantes 2 casas
+
 #H0: Hufflepuff (h) y Ravenclaw (r) tienen una diferencia promedio de 22 
 #puntos para el primer trimestre (Xh - Xr == 22)
 
@@ -83,6 +85,25 @@ cat ("diferencia observada:", mediaH - mediaR,"\n\n")
 B <- 5000
 
 distribucion_bootstrap <- two.boot(casaH$trim1,casaR$trim1,FUN = mean, R = B)
+
+#Se analiza la distribucion bootstrap
+valores <- data.frame(distribucion_bootstrap$t)
+colnames(valores) <- "valores"
+
+#Histograma de frecuencias
+histograma <- gghistogram(valores, x = "valores", color = "red",
+                             fill = "red", bins = 100 ,
+                             xlab = "Diferencia de medias",
+                             ylab = "Frecuencia", add = "mean")
+print(histograma)
+
+#Grafico QQ
+qq <- ggqqplot(valores, x = "valores", color = "red")
+print(qq)
+
+cat("Distribución bootstrap:\n")
+cat ("\tMedia:", mean(valores$valores),"\n")
+cat ("\tDesviación estándar:",sd(valores$valores),"\n\n")
 
 #PREGUNTA 2
 
